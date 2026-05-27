@@ -1,0 +1,13 @@
+{
+  "name": "soso-coffee-order",
+  "version": "1.0.0",
+  "private": true,
+  "description": "소소 팀 커피 주문 모바일 웹앱",
+  "type": "module",
+  "scripts": {
+    "start": "node start.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

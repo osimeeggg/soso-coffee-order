@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#142b46" />
+    <title>소소 커피 주문</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="hero">
+        <p class="eyebrow">TODAY'S COFFEE ORDER</p>
+        <div class="brand-mark" aria-hidden="true">⌂</div>
+        <h1>소소</h1>
+        <p class="subhead">팀 커피 메뉴를 골라주세요</p>
+      </header>
+
+      <nav class="steps" aria-label="주문 단계">
+        <span class="step active" data-step-indicator="member">1 팀원</span>
+        <span class="step" data-step-indicator="menu">2 음료</span>
+        <span class="step" data-step-indicator="options">3 옵션</span>
+        <span class="step" data-step-indicator="done">4 완료</span>
+      </nav>
+
+      <main id="screen" aria-live="polite"></main>
+    </div>
+
+    <template id="member-screen">
+      <section class="panel member-screen">
+        <div class="section-heading">
+          <div>
+            <p class="caption">STEP 1</p>
+            <h2>팀원을 선택하세요</h2>
+          </div>
+          <span class="submitted-count"></span>
+        </div>
+        <div class="member-grid"></div>
+        <section class="status-card">
+          <div class="status-head">
+            <h3>오늘의 주문 현황</h3>
+            <button class="text-button refresh-button" type="button">새로고침</button>
+          </div>
+          <div class="order-list"></div>
+          <div class="totals"></div>
+        </section>
+      </section>
+    </template>
+
+    <template id="menu-screen">
+      <section class="panel">
+        <button class="back-button" type="button">← 팀원 다시 선택</button>
+        <p class="caption">STEP 2</p>
+        <h2 class="selected-member-title"></h2>
+        <div class="category-tabs" role="tablist" aria-label="메뉴 분류"></div>
+        <div class="menu-list"></div>
+      </section>
+    </template>
+
+    <template id="options-screen">
+      <section class="panel">
+        <button class="back-button" type="button">← 음료 다시 선택</button>
+        <p class="caption">STEP 3</p>
+        <h2>옵션을 선택하세요</h2>
+        <article class="chosen-drink"></article>
+        <form class="option-form">
+          <fieldset class="option-block temperature-block">
+            <legend>온도</legend>
+            <div class="choice-row temperature-options"></div>
+          </fieldset>
+          <fieldset class="option-block size-block">
+            <legend>사이즈</legend>
+            <div class="choice-row size-options"></div>
+          </fieldset>
+          <fieldset class="option-block bean-block">
+            <legend>원두 선택</legend>
+            <p class="field-help">아메리카노, 카페라떼 주문 시 선택 가능해요.</p>
+            <div class="choice-stack bean-options"></div>
+          </fieldset>
+          <fieldset class="option-block">
+            <legend>추가 옵션</legend>
+            <div class="choice-stack addon-options"></div>
+          </fieldset>
+          <label class="memo-field">
+            <span>메모</span>
+            <input name="memo" type="text" maxlength="40" placeholder="예: 얼음 적게, 덜 달게" />
+          </label>
+          <footer class="checkout-bar">
+            <div>
+              <span class="caption">결제 금액</span>
+              <strong class="total-price"></strong>
+            </div>
+            <button class="primary-button submit-button" type="submit">제출하기</button>
+          </footer>
+        </form>
+      </section>
+    </template>
+
+    <template id="done-screen">
+      <section class="panel completion">
+        <div class="success-mark">✓</div>
+        <p class="caption">STEP 4</p>
+        <h2>제출 완료!</h2>
+        <p class="done-message"></p>
+        <article class="receipt"></article>
+        <button class="primary-button edit-button" type="button">수정하기</button>
+        <button class="secondary-button home-button" type="button">주문 현황 보기</button>
+      </section>
+    </template>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
