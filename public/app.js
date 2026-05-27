@@ -260,7 +260,10 @@ function renderMembers() {
     orders.forEach((order) => {
       const line = document.createElement("div");
       line.className = "order-item";
-      const trailing = state.mode === "coffee" ? `${order.menuName} · ${money(order.total)}` : `${order.methodName} · ${order.menuName}`;
+      const lunchMemo = order.memo ? ` · ${order.memo}` : "";
+      const trailing = state.mode === "coffee"
+        ? `${order.menuName} · ${money(order.total)}`
+        : `${order.methodName} · ${order.menuName}${lunchMemo}`;
       line.innerHTML = `<strong>${order.memberName}</strong><span>${trailing}</span>`;
       orderList.append(line);
     });
