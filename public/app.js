@@ -259,6 +259,7 @@ function renderOptions() {
   const item = state.selectedMenu;
   const view = document.querySelector("#options-screen").content.cloneNode(true);
   const form = view.querySelector(".option-form");
+  const totalPriceElement = view.querySelector(".total-price");
 
   view.querySelector(".back-button").addEventListener("click", renderMenu);
   view.querySelector(".chosen-drink").innerHTML = `<strong>${item.name}</strong><span>${money(item.price)}</span>`;
@@ -326,7 +327,7 @@ function renderOptions() {
       additions: selectedAddition,
       memo: form.elements.memo.value.trim(),
     };
-    view.querySelector(".total-price").textContent = money(totalPrice(item, state.draft));
+    totalPriceElement.textContent = money(totalPrice(item, state.draft));
   }
 
   form.addEventListener("change", captureDraft);
