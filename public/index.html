@@ -4,19 +4,23 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#142b46" />
-    <title>소소 커피 주문</title>
+    <title>SOSO Coffee & Lunch</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <div class="app-shell">
       <header class="hero">
-        <p class="eyebrow">TODAY'S COFFEE ORDER</p>
-        <div class="brand-mark" aria-hidden="true">⌂</div>
-        <h1>소소</h1>
-        <p class="subhead">팀 커피 메뉴를 골라주세요</p>
+        <p class="eyebrow">SOSO TEAM ORDER</p>
+        <h1 id="service-title">Coffee</h1>
+        <p class="subhead" id="service-subhead">오늘 마실 음료를 골라주세요</p>
       </header>
 
-      <nav class="steps" aria-label="주문 단계">
+      <nav class="service-tabs" aria-label="서비스 선택">
+        <button class="service-tab active" type="button" data-mode="coffee">Coffee</button>
+        <button class="service-tab" type="button" data-mode="lunch">Lunch</button>
+      </nav>
+
+      <nav class="steps" aria-label="선택 단계">
         <span class="step active" data-step-indicator="member">1 팀원</span>
         <span class="step" data-step-indicator="menu">2 음료</span>
         <span class="step" data-step-indicator="options">3 옵션</span>
@@ -38,7 +42,7 @@
         <div class="member-grid"></div>
         <section class="status-card">
           <div class="status-head">
-            <h3>오늘의 주문 현황</h3>
+            <h3 class="status-title">오늘의 주문 현황</h3>
             <button class="text-button refresh-button" type="button">새로고침</button>
           </div>
           <div class="order-list"></div>
@@ -96,6 +100,32 @@
       </section>
     </template>
 
+    <template id="lunch-method-screen">
+      <section class="panel">
+        <button class="back-button" type="button">← 팀원 다시 선택</button>
+        <p class="caption">STEP 2</p>
+        <h2 class="selected-member-title"></h2>
+        <p class="screen-guide">오늘 점심은 어떻게 먹을까요?</p>
+        <div class="lunch-card-list"></div>
+      </section>
+    </template>
+
+    <template id="lunch-choice-screen">
+      <section class="panel">
+        <button class="back-button" type="button">← 방법 다시 선택</button>
+        <p class="caption">STEP 3</p>
+        <h2 class="lunch-choice-title"></h2>
+        <form class="lunch-form">
+          <div class="lunch-choice-list"></div>
+          <label class="memo-field lunch-memo">
+            <span>메모</span>
+            <input name="memo" type="text" maxlength="40" placeholder="예: 조금 늦게 출발해요" />
+          </label>
+          <button class="primary-button" type="submit">제출하기</button>
+        </form>
+      </section>
+    </template>
+
     <template id="done-screen">
       <section class="panel completion">
         <div class="success-mark">✓</div>
@@ -104,7 +134,7 @@
         <p class="done-message"></p>
         <article class="receipt"></article>
         <button class="primary-button edit-button" type="button">수정하기</button>
-        <button class="secondary-button home-button" type="button">주문 현황 보기</button>
+        <button class="secondary-button home-button" type="button">현황 보기</button>
       </section>
     </template>
 

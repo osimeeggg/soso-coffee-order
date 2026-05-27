@@ -1,17 +1,47 @@
 :root {
   --canvas: #f3f7f7;
   --paper: #ffffff;
-  --blue-900: #142b46;
-  --blue-700: #193c60;
-  --blue-600: #315b77;
-  --blue-200: #cfdcdf;
-  --blue-100: #e8eff1;
-  --green: #397565;
-  --green-soft: #e7f1ed;
-  --line: #dce6e7;
-  --muted: #667b83;
-  --shadow: 0 10px 28px rgba(20, 43, 70, 0.07);
+  --blue-900: #34231d;
+  --blue-700: #704330;
+  --blue-600: #89604b;
+  --blue-200: #dfcfc5;
+  --blue-100: #f2e9e2;
+  --green: #84613b;
+  --green-soft: #f3eadd;
+  --line: #e9ddd5;
+  --muted: #7c6a61;
+  --hero-start: #4d2b20;
+  --hero-middle: #71412d;
+  --hero-end: #a16f43;
+  --active-end: #916548;
+  --focus-soft: #f3e8dd;
+  --hover-soft: #fdf8f4;
+  --status-background: #faf3ed;
+  --receipt-background: #faf3ed;
+  --shadow: 0 10px 28px rgba(65, 40, 29, 0.08);
   --radius: 14px;
+}
+
+body[data-mode="lunch"] {
+  --canvas: #fff8ef;
+  --blue-900: #42271b;
+  --blue-700: #c0441f;
+  --blue-600: #a8542e;
+  --blue-200: #f0cfb0;
+  --blue-100: #fff0d7;
+  --green: #c0441f;
+  --green-soft: #fff0d7;
+  --line: #f1dec7;
+  --muted: #866856;
+  --hero-start: #d34d1e;
+  --hero-middle: #ef711f;
+  --hero-end: #f2ad2e;
+  --active-end: #ed8c1e;
+  --focus-soft: #ffe8ca;
+  --hover-soft: #fff9ee;
+  --status-background: #fff4e5;
+  --receipt-background: #fff3e1;
+  --shadow: 0 10px 28px rgba(173, 69, 26, 0.09);
 }
 
 * {
@@ -46,13 +76,13 @@ button {
   padding: 34px 24px 21px;
   text-align: center;
   color: #fff;
-  background: linear-gradient(145deg, #142b46 0%, #1c4666 56%, #397565 100%);
+  background: linear-gradient(145deg, var(--hero-start) 0%, var(--hero-middle) 56%, var(--hero-end) 100%);
   border-radius: 0 0 18px 18px;
 }
 
 .eyebrow {
   margin: 0 0 7px;
-  color: #b9d8d5;
+  color: rgba(255, 244, 231, 0.8);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.24em;
@@ -62,7 +92,7 @@ button {
   font-family: Georgia, serif;
   font-size: 32px;
   line-height: 1;
-  color: #dcebe7;
+  color: rgba(255, 249, 241, 0.9);
 }
 
 .hero h1 {
@@ -74,15 +104,50 @@ button {
 
 .subhead {
   margin: 0;
-  color: #d9e8e7;
+  color: rgba(255, 248, 237, 0.92);
   font-size: 14px;
+}
+
+.service-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5px;
+  margin: 14px 18px 8px;
+  padding: 4px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background: var(--blue-100);
+}
+
+.service-tab {
+  min-height: 45px;
+  border: 0;
+  border-radius: 8px;
+  color: var(--blue-600);
+  background: transparent;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.service-tab.active {
+  color: #fff;
+  background: linear-gradient(115deg, var(--blue-700), var(--active-end));
+  box-shadow: 0 3px 10px rgba(65, 40, 29, 0.12);
+}
+
+body[data-mode="coffee"] .service-tab[data-mode="coffee"] {
+  background: linear-gradient(115deg, #704330, #a16f43);
+}
+
+body[data-mode="lunch"] .service-tab[data-mode="lunch"] {
+  background: linear-gradient(115deg, #c0441f, #e5761d);
 }
 
 .steps {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 7px;
-  margin: 18px 18px 14px;
+  margin: 8px 18px 14px;
 }
 
 .step {
@@ -158,7 +223,7 @@ h2 {
 }
 
 .member-button.submitted {
-  border-color: #b9d7cd;
+  border-color: var(--blue-200);
   background: var(--green-soft);
 }
 
@@ -179,7 +244,7 @@ h2 {
   margin-top: 22px;
   padding: 15px 13px 12px;
   border-radius: 10px;
-  background: #f0f5f5;
+  background: var(--status-background);
 }
 
 .status-head {
@@ -214,7 +279,7 @@ h2 {
   justify-content: space-between;
   gap: 8px;
   padding: 8px 0;
-  border-bottom: 1px dashed #d5e1e1;
+  border-bottom: 1px dashed var(--line);
   font-size: 13px;
 }
 
@@ -310,7 +375,7 @@ h2 {
 .menu-button:hover,
 .menu-button:focus-visible {
   border-color: var(--blue-600);
-  background: #f4f8f8;
+  background: var(--hover-soft);
 }
 
 .menu-name {
@@ -331,6 +396,75 @@ h2 {
   white-space: nowrap;
 }
 
+.screen-guide {
+  margin: -9px 0 18px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.lunch-card-list {
+  display: grid;
+  gap: 10px;
+}
+
+.lunch-method-button {
+  display: grid;
+  grid-template-columns: 50px 1fr 18px;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 75px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: var(--blue-900);
+  background: #fff;
+  text-align: left;
+}
+
+.lunch-method-button:hover,
+.lunch-method-button:focus-visible {
+  border-color: var(--blue-200);
+  background: var(--hover-soft);
+}
+
+.lunch-method-icon {
+  display: grid;
+  place-items: center;
+  height: 46px;
+  border-radius: 8px;
+  color: var(--green);
+  background: var(--green-soft);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.lunch-method-button strong {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 16px;
+}
+
+.lunch-method-button small {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.lunch-arrow {
+  color: var(--blue-600);
+  font-weight: 700;
+}
+
+.lunch-choice-list {
+  display: grid;
+  gap: 9px;
+  margin: 0 0 19px;
+}
+
+.lunch-memo {
+  margin-top: 4px;
+}
+
 .chosen-drink {
   display: flex;
   justify-content: space-between;
@@ -339,7 +473,7 @@ h2 {
   padding: 15px 14px;
   border-radius: 10px;
   color: #fff;
-  background: linear-gradient(120deg, var(--blue-700), #27586d);
+  background: linear-gradient(120deg, var(--blue-700), var(--active-end));
 }
 
 .chosen-drink strong {
@@ -405,7 +539,7 @@ h2 {
 .choice input:checked + .choice-label {
   border-color: var(--blue-700);
   color: var(--blue-700);
-  background: #edf3f5;
+  background: var(--focus-soft);
   font-weight: 800;
 }
 
@@ -424,7 +558,7 @@ h2 {
 
 .memo-field input:focus {
   border-color: var(--blue-600);
-  outline: 2px solid #d8e7ea;
+  outline: 2px solid var(--focus-soft);
 }
 
 .checkout-bar {
@@ -502,7 +636,7 @@ h2 {
   margin-bottom: 21px;
   padding: 15px;
   border-radius: 10px;
-  background: #eef4f4;
+  background: var(--receipt-background);
   text-align: left;
 }
 
@@ -517,7 +651,7 @@ h2 {
 .receipt-line:last-child {
   margin: 13px 0 0;
   padding-top: 12px;
-  border-top: 1px dashed #cfddde;
+  border-top: 1px dashed var(--line);
   font-size: 16px;
   font-weight: 800;
 }
@@ -535,7 +669,7 @@ h2 {
     min-height: calc(100vh - 40px);
     border-radius: 18px;
     background: var(--canvas);
-    box-shadow: 0 14px 46px rgba(20, 43, 70, 0.12);
+    box-shadow: 0 14px 46px rgba(65, 40, 29, 0.12);
     overflow: hidden;
   }
 }
