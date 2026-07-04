@@ -58,7 +58,7 @@ const menu = [
 
 const additions = [
   { id: "shot", name: "샷 추가", price: 500 },
-  { id: "decaf", name: "디카페인 변경", price: 700 },
+  { id: "decaf", name: "디카페인 변경", price: 500 },
   { id: "oat", name: "오트밀크 변경", price: 1000 },
 ];
 
@@ -174,7 +174,9 @@ async function saveOrder(order) {
 function configureModeHeader() {
   const content = modeContent[state.mode];
   document.body.dataset.mode = state.mode;
-  document.querySelector("#service-title").textContent = content.title;
+  const serviceTitle = document.querySelector("#service-title");
+  serviceTitle.textContent = content.title;
+  serviceTitle.setAttribute("aria-label", `${content.title} 홈으로 이동`);
   document.querySelector("#service-subhead").textContent = content.subhead;
   document.querySelectorAll(".service-tab").forEach((button) => {
     button.classList.toggle("active", button.dataset.mode === state.mode);
@@ -248,7 +250,7 @@ function renderMembers() {
     const button = document.createElement("button");
     button.type = "button";
     button.className = `member-button${hasOrder ? " submitted" : ""}`;
-    button.innerHTML = `${member.name}<small class="member-status">${hasOrder ? "제출 완료" : "선택하기"}</small>`;
+    button.innerHTML = `${member.name}${hasOrder ? '<small class="member-status">완료</small>' : ""}`;
     button.addEventListener("click", () => selectMember(member));
     grid.append(button);
   });
@@ -522,6 +524,7 @@ function renderDone(order) {
 document.querySelectorAll(".service-tab").forEach((button) => {
   button.addEventListener("click", () => switchMode(button.dataset.mode));
 });
+document.querySelector("#service-title").addEventListener("click", renderMembers);
 
 async function start() {
   configureModeHeader();
